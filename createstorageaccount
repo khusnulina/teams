@@ -85,6 +85,43 @@ dotnet new console --name PhotoSharingApp
 cd PhotoSharingApp
 dotnet run
 
+// js
+// -------------
+mkdir PhotoSharingApp
+cd PhotoSharingApp
+npm init -y
+touch index.js
 
 
- 
+#!/usr/bin/env node
+
+function main() {
+    console.log('Hello, World!');
+}
+
+main();
+
+
+node index.js
+// -------------------
+
+
+// create VM
+ New-AzVm `
+    -ResourceGroupName "TestResourceGroup" `
+    -Name "test-wp1-eus-vm" `
+    -Location "East US" `
+    -VirtualNetworkName "test-wp1-eus-network" `
+    -SubnetName "default" `
+    -SecurityGroupName "test-wp1-eus-nsg" `
+    -PublicIpAddressName "test-wp1-eus-pubip" `
+    -OpenPorts 80,3389
+
+az vm create \
+    --resource-group TestResourceGroup \
+    --name test-wp1-eus-vm \
+    --image win2016datacenter \
+    --admin-username jonc \
+    --admin-password aReallyGoodPasswordHere
+    
+    
