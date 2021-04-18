@@ -1,0 +1,90 @@
+// westus2
+// southcentralus
+// centralus
+// eastus
+// westeurope
+// southeastasia
+// japaneast
+// brazilsouth
+// australiasoutheast
+// centralindia
+
+az storage account list
+
+az storage account create --name [unique-name] -g learn-8e37737e-1ef7-4ad7-8008-27c82ae05956 --kind StorageV2 --sku Standard_LRS
+
+
+// To access a queue, you need three pieces of information:
+
+// Storage account name
+// Queue name
+// Authorization token
+
+az storage account keys list ...
+Get-AzStorageAccountKey ...
+
+string connectionString = "DefaultEndpointsProtocol=https;AccountName=<your storage account name>;AccountKey=<your key>;EndpointSuffix=core.windows.net"
+
+
+dotnet new console -n QueueApp
+cd QueueApp
+dotnet build
+
+az storage account show-connection-string --name <name> --resource-group learn-8e37737e-1ef7-4ad7-8008-27c82ae05956
+
+// C# example
+
+using System;
+
+namespace QueueApp
+{
+    class Program
+    {
+        private const string ConnectionString = "DefaultEndpointsProtocol=https; ...";
+        
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+        }
+    }
+}
+
+
+//
+dotnet add package WindowsAzure.Storage
+
+// https://docs.microsoft.com/en-us/learn/modules/enable-reliable-messaging-for-big-data-apps-using-event-hubs/3-exercise-create-an-event-hub-using-azure-cli
+az configure --defaults group=learn-74139d90-4928-4a47-90cb-41645bf9aa54 location=westus2
+
+NS_NAME=ehubns-$RANDOM
+az eventhubs namespace create --name $NS_NAME
+
+
+az eventhubs namespace authorization-rule keys list \
+    --name RootManageSharedAccessKey \
+    --namespace-name $NS_NAME
+    
+az eventhubs eventhub show --namespace-name $NS_NAME --name $HUB_NAME
+  
+STORAGE_NAME=storagename$RANDOM
+az storage account create --name $STORAGE_NAME --sku Standard_RAGRS --encryption-service blob
+az storage account keys list --account-name $STORAGE_NAME
+az storage account show-connection-string -n $STORAGE_NAME
+
+az storage container create --name messages --connection-string "<connection string here>"
+
+
+cd ~
+git clone https://github.com/Azure/azure-event-hubs.git
+
+
+cd ~/azure-event-hubs/samples/Java/Basic/SimpleSend/src/main/java/com/microsoft/azure/eventhubs/samples/SimpleSend
+
+// create .net core app
+dotnet new console --name PhotoSharingApp
+cd PhotoSharingApp
+dotnet run
+
+
+
+ 
