@@ -125,3 +125,26 @@ az vm create \
     --admin-password aReallyGoodPasswordHere
     
     
+az vm create \
+  --resource-group learn-0c1cf6f0-ce01-4061-b4ef-a49f95c67e08 \
+  --name MeanStack \
+  --image Canonical:UbuntuServer:16.04-LTS:latest \
+  --admin-username azureuser \
+  --generate-ssh-keys
+  
+  az vm open-port \
+  --port 80 \
+  --resource-group learn-0c1cf6f0-ce01-4061-b4ef-a49f95c67e08 \
+  --name MeanStack
+  
+  // install mongodb
+  sudo apt update && sudo apt upgrade -y
+  sudo apt-get install -y mongodb
+  sudo systemctl status mongodb
+  mongod --version
+  
+  Install Node.js
+  curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+  sudo apt install nodejs
+  nodejs -v
+  
